@@ -55,28 +55,44 @@
 
           <hr>
 
-          <div class="form-group">
-            <input class="form-control" type="text" ng-model="contact.name">
-          </div>
+          <form name="contactForm">
+            <div class="form-group">
+              <input name="name" class="form-control" type="text" ng-model="contact.name" ng-required="true" ng-minlength="10" placeholder="Nome">
+            </div>
+            <!-- Error message -->
+            <div ng-show="contactForm.name.$error.required && contactForm.name.$dirty" class="alert alert-danger">
+              Informe o seu nome
+            </div>
+            <div ng-show="contactForm.name.$error.minlength" class="alert alert-danger">
+              O nome deve conter no minimo 10 caracteres.
+            </div>
 
-          <div class="form-group">
-            <input class="form-control" type="text" ng-model="contact.phone">
-          </div>
+            <div class="form-group">
+              <input name="phone" class="form-control" type="text" ng-model="contact.phone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" placeholder="Telefone">
+            </div>
+            <!-- Error message -->
+            <div ng-show="contactForm.phone.$error.required && contactForm.phone.$dirty" class="alert alert-danger">
+              Informe o seu telefone
+            </div>
+            <div ng-show="contactForm.phone.$error.pattern" class="alert alert-danger">
+              O campo telefone deve estar no formato 00000-0000
+            </div>
 
-          <div class="form-group">
-            <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name group by phoneCompany.category for phoneCompany in phoneCompanies">
-              <option value="">=========================Selecione uma  operadora============================<option>
-            </select>
-          </div>
+            <div class="form-group">
+              <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name group by phoneCompany.category for phoneCompany in phoneCompanies">
+                <option value="">=========================Selecione uma  operadora============================<option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phone">Adicionar contato</button>
-          </div>
 
-          <div class="form-group">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">Adicionar contato</button>
+            </div>
+
+            <div class="form-group">
             <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)">Remover Contato</button>
           </div>
-
+          </form>
 
         </div>
       </div>
@@ -117,6 +133,7 @@
       $scope.addContact = function (contact) {
         $scope.contacts.push(contact);
         delete $scope.contact;
+        $scope.contactForm.$setPristine();
       };
 
       // função para remover um contato
