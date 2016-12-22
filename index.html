@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="phoneList">
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Phone list</title>
+
+  <!-- BootStrap -->
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+
+  <style>
+    .select {
+      background-color: yellow;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .square {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+
+</head>
+<body ng-controller="phoneListController">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="jumbotron">
+          <!-- <h4 ng-bind="app"></h4> -->
+          <h3 class="text-center">{{ app }}</h3>
+
+          <table ng-show="contacts.length > 0" class="table table-bordered">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Operadora</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-class="{select : contact.select, bold: contact.select}" ng-repeat="contact in contacts">
+                <td><input type="checkbox" ng-model="contact.select"></td>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.phoneCompany.name }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr>
+
+          <div class="form-group">
+            <input class="form-control" type="text" ng-model="contact.name">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="text" ng-model="contact.phone">
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name group by phoneCompany.category for phoneCompany in phoneCompanies">
+              <option value="">=========================Selecione uma  operadora============================<option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="!contact.name || !contact.phone">Adicionar contato</button>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)">Remover Contato</button>
+          </div>
+
+
+        </div>
+      </div>
+      <div ng-include="'template/footer.html'"></div>
+    </div>
+  </div>
+
+
+  <!-- Angular -->
+  <script type="text/javascript" src="lib/angular/angular.js"></script>
+  <!-- Module -->
+  <script type="text/javascript">
+    angular.module('phoneList', []);
+  </script>
+  <!-- Controller -->
+  <script type="text/javascript">
+    angular.module("phoneList").controller("phoneListController", function ($scope) {
+      $scope.app = "Lista telefonica";
+
+      $scope.contacts = [
+        {name: "Pedro", phone: "9999-8888"},
+        {name: "Carlos", phone: "1111-7777"},
+        {name: "Ana", phone: "2222-5555"}
+      ];
+
+      $scope.phoneCompanies = [
+        {name: 'Oi', code: 14, category: "Mobile"},
+        {name: 'Vivo', code: 15, category: "Mobile"},
+        {name: 'Tim', code: 41, category: "Mobile"},
+        {name: 'GVT', code: 25, category: 'Fixo'},
+        {name: 'Embratel', code: 21, category: 'Fixo'}
+      ];
+
+
+      $scope.select = 'select';
+
+      // função para inserir um novo contato
+      $scope.addContact = function (contact) {
+        $scope.contacts.push(contact);
+        delete $scope.contact;
+      };
+
+      // função para remover um contato
+      $scope.deleteContact = function (contacts) {
+        $scope.contacts = contacts.filter(function (contact) {
+          if (!contact.select) return contact;
+        });
+
+      };
+
+
+      // função para verificar se existe algum contato selecionado
+      $scope.isContactSelect = function (contacts) {
+        var i = contacts.some(function (contact) {
+          return contact.select;
+        });
+        console.log(i);
+        return i;
+      };
+
+    });
+  </script>
+</body>
+</html>
