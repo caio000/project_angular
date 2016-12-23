@@ -1,7 +1,7 @@
 # AngularJS Project
 
 This project is to learning how to create projects using AngularJS whith the
-course by @github/rodrigobranas on YouTube.
+course by @rodrigobranas on YouTube.
 
 ## The course
 
