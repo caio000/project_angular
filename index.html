@@ -8,6 +8,8 @@
 
   <!-- BootStrap -->
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.css">
 
   <style>
     .select {
@@ -32,7 +34,7 @@
       <div class="col-sm-6 col-sm-offset-3">
         <div class="jumbotron">
           <!-- <h4 ng-bind="app"></h4> -->
-          <h3 class="text-center">{{ app }}</h3>
+          <h3 class="text-center">{{ app }} <i class="fa fa-address-book-o"></i> </h3>
 
           <div class="form-group">
             <input class="form-control" type="text" ng-model="searchFilter" placeholder="O que você esta procurando?">
@@ -41,7 +43,7 @@
           <table ng-show="contacts.length > 0" class="table table-bordered">
             <thead>
               <tr>
-                <th></th>
+                <th><i class="fa fa-check-square-o" aria-hidden="true"></i></th>
                 <th><a href="" ng-click="orderColumnBy('name')">Name</a></th>
                 <th>Phone</th>
                 <th>Operadora</th>
@@ -53,7 +55,7 @@
               <!-- filter: {name: searchFilter} (filtro com criterios, no caso filtro por nome) -->
               <tr ng-class="{select : contact.select, bold: contact.select}" ng-repeat="contact in contacts | filter:{name:searchFilter} | orderBy:orderColumn:orderDirection">
                 <td><input type="checkbox" ng-model="contact.select"></td>
-                <td>{{ contact.name | uppercase }}</td>
+                <td>{{ contact.name | uppercase | limitTo: 3 }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.phoneCompany.name | lowercase }}</td>
                 <td>{{ contact.date | date:'dd/MM/yyyy HH:mm' }}</td>
@@ -87,17 +89,17 @@
             </div>
 
             <div class="form-group">
-              <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name group by phoneCompany.category for phoneCompany in phoneCompanies | orderBy:'name'">
-                <option value="">=========================Selecione uma  operadora============================<option>
+              <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name + ' (' + (phoneCompany.price | currency) + ') ' for phoneCompany in phoneCompanies | orderBy:'name'">
+                <option value="">=========================Selecione uma operadora============================<option>
               </select>
             </div>
 
             <div class="form-group">
-              <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">Adicionar contato</button>
+              <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar contato</button>
             </div>
 
             <div class="form-group">
-              <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)">Remover Contato</button>
+              <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remover Contato</button>
             </div>
 
           </form>
@@ -111,6 +113,8 @@
 
   <!-- Angular -->
   <script type="text/javascript" src="lib/angular/angular.js"></script>
+  <!-- Angular Locale -->
+  <script type="text/javascript" src="lib/angular/angular-local-pt-br/angular-locale_pt-br.js"></script>
   <!-- Module -->
   <script type="text/javascript">
     angular.module('phoneList', []);
@@ -127,11 +131,11 @@
       ];
 
       $scope.phoneCompanies = [
-        {name: 'Oi', code: 14, category: "Mobile"},
-        {name: 'Vivo', code: 15, category: "Mobile"},
-        {name: 'Tim', code: 41, category: "Mobile"},
-        {name: 'GVT', code: 25, category: 'Fixo'},
-        {name: 'Embratel', code: 21, category: 'Fixo'}
+        {name: 'Oi', code: 14, category: "Mobile", price: 2},
+        {name: 'Vivo', code: 15, category: "Mobile", price: 1},
+        {name: 'Tim', code: 41, category: "Mobile", price: 3},
+        {name: 'GVT', code: 25, category: 'Fixo', price: 1},
+        {name: 'Embratel', code: 21, category: 'Fixo', price: 2}
       ];
 
 

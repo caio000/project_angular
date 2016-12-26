@@ -9,7 +9,7 @@ course by @rodrigobranas on YouTube.
 - [x] Lesson 02
 - [x] Lesson 03
 - [x] Lesson 04
-- [ ] Lesson 05
+- [x] Lesson 05
 - [ ] Lesson 06
 - [ ] Lesson 07
 - [ ] Lesson 08
