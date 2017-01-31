@@ -1,1 +1,1 @@
-angular.module('phoneList', []);
+var myApp = angular.module('phoneList', []);

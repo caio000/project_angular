@@ -1,4 +1,4 @@
-angular.module("phoneList").controller("phoneListController", function ($scope, $http) {
+myApp.controller("phoneListController", function ($scope, $http, contactsAPI) {
   $scope.app = "Lista telefonica";
   $scope.select = 'select';
   $scope.contactReg = false;
@@ -14,7 +14,7 @@ angular.module("phoneList").controller("phoneListController", function ($scope, 
 
   // Função que lista todos os contatos cadastrados
   var loadContacts = function () {
-    $http.get('php/contact/getContacts.php').then(function success (response) {
+    contactsAPI.getContacts().then(function success (response) {
       $scope.contacts = response.data;
     }, function error (response) {
       console.log('erro');
@@ -30,7 +30,7 @@ angular.module("phoneList").controller("phoneListController", function ($scope, 
 
   // Função que cadastra um novo contato
   $scope.contactRegister = function (contact) {
-    $http.post("http://localhost/angular/php/contact/addContacts.php", contact).then(function success(response) {
+    contactsAPI.saveContact(contact).then(function success(response) {
       $scope.contactReg = true;
       loadContacts();
     }, function error (response) {
