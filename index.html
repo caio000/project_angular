@@ -95,11 +95,15 @@
             </div>
 
             <div class="form-group">
-              <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar contato</button>
+              <button class="btn btn-primary btn-block" ng-click="contactRegister(contact)" ng-disabled="contactForm.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar contato</button>
             </div>
 
             <div class="form-group">
               <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remover Contato</button>
+            </div>
+
+            <div class="alert alert-success" ng-show="contactReg">
+              Contato cadastrado com sucesso! <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </div>
 
           </form>
@@ -114,22 +118,18 @@
   <!-- Angular -->
   <script type="text/javascript" src="lib/angular/angular.js"></script>
   <!-- Angular Locale -->
-  <script type="text/javascript" src="lib/angular/angular-local-pt-br/angular-locale_pt-br.js"></script>
+  <script type="text/javascript" src="lib/angular/angular-locale/angular-locale_pt-br.js"></script>
   <!-- Module -->
   <script type="text/javascript">
     angular.module('phoneList', []);
   </script>
   <!-- Controller -->
   <script type="text/javascript">
-    angular.module("phoneList").controller("phoneListController", function ($scope) {
+    angular.module("phoneList").controller("phoneListController", function ($scope, $http) {
       $scope.app = "Lista telefonica";
-
-      $scope.contacts = [
-        {name: "Pedro", phone: "9999-8888", phoneCompany: {name: 'Vivo', code: 15, category: "Mobile"}, date: new Date()},
-        {name: "Carlos", phone: "1111-7777", phoneCompany: {name: 'GVT', code: 25, category: 'Fixo'}, date: new Date()},
-        {name: "Ana", phone: "2222-5555", phoneCompany: {name: 'Embratel', code: 21, category: 'Fixo'}, date: new Date()}
-      ];
-
+      $scope.select = 'select';
+      $scope.contactReg = false;
+      $scope.contacts = [];
       $scope.phoneCompanies = [
         {name: 'Oi', code: 14, category: "Mobile", price: 2},
         {name: 'Vivo', code: 15, category: "Mobile", price: 1},
@@ -139,7 +139,31 @@
       ];
 
 
-      $scope.select = 'select';
+      // Função que lista todos os contatos cadastrados
+      var loadContacts = function () {
+        $http.get('php/contact/getContacts.php').then(function success (response) {
+          $scope.contacts = response.data;
+        }, function error (response) {
+          console.log('erro');
+        });
+      };
+
+      // Carrega todas as operadoras caradastradas
+      var loadPhoneCompanies = function () {
+        $http.get('php/phoneCompanies.php').then(function success (response) {
+          $scope.phoneCompanies = response.data;
+        });
+      };
+
+      // Função que cadastra um novo contato
+      $scope.contactRegister = function (contact) {
+        $http.post("http://localhost/angular/php/contact/addContacts.php", contact).then(function success(response) {
+          $scope.contactReg = true;
+          loadContacts();
+        }, function error (response) {
+          $scope.contactReg = false;
+        });
+      };
 
       // função para inserir um novo contato
       $scope.addContact = function (contact) {
@@ -169,6 +193,9 @@
         $scope.orderColumn = col;
         $scope.orderDirection = !$scope.orderDirection;
       };
+
+      loadContacts();
+      // loadPhoneCompanies();
 
     });
   </script>
