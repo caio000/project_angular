@@ -1,0 +1,12 @@
+.select {
+  background-color: yellow;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.square {
+  width: 20px;
+  height: 20px;
+}

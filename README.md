@@ -11,7 +11,7 @@ course by @rodrigobranas on YouTube.
 - [x] Lesson 04
 - [x] Lesson 05
 - [x] Lesson 06
-- [ ] Lesson 07
+- [x] Lesson 07
 - [ ] Lesson 08
 - [ ] Lesson 09
 - [ ] Lesson 10
