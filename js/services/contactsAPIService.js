@@ -1,10 +1,10 @@
-myApp.factory('contactsAPI', function($http) {
+myApp.factory('contactsAPI', function($http, Config) {
   var _getContacts = function() {
-    return $http.get('php/contact/getContacts.php');
+    return $http.get(Config.baseURL + 'php/contact/getContacts.php');
   };
 
   var _saveContact = function (contact) {
-    return $http.post("http://localhost/angular/php/contact/addContacts.php", contact);
+    return $http.post(Config.baseURL + "php/contact/addContacts.php", contact);
   };
 
 

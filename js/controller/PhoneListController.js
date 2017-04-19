@@ -1,15 +1,9 @@
-myApp.controller("phoneListController", function ($scope, $http, contactsAPI) {
+myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI) {
   $scope.app = "Lista telefonica";
   $scope.select = 'select';
   $scope.contactReg = false;
   $scope.contacts = [];
-  $scope.phoneCompanies = [
-    {name: 'Oi', code: 14, category: "Mobile", price: 2},
-    {name: 'Vivo', code: 15, category: "Mobile", price: 1},
-    {name: 'Tim', code: 41, category: "Mobile", price: 3},
-    {name: 'GVT', code: 25, category: 'Fixo', price: 1},
-    {name: 'Embratel', code: 21, category: 'Fixo', price: 2}
-  ];
+  $scope.phoneCompanies = [];
 
 
   // Função que lista todos os contatos cadastrados
@@ -23,7 +17,8 @@ myApp.controller("phoneListController", function ($scope, $http, contactsAPI) {
 
   // Carrega todas as operadoras caradastradas
   var loadPhoneCompanies = function () {
-    $http.get('php/phoneCompanies.php').then(function success (response) {
+    CompanyAPI.getCompanies().then(function success (response) {
+      console.log(response.data);
       $scope.phoneCompanies = response.data;
     });
   };
@@ -68,6 +63,6 @@ myApp.controller("phoneListController", function ($scope, $http, contactsAPI) {
   };
 
   loadContacts();
-  // loadPhoneCompanies();
+  loadPhoneCompanies();
 
 });
