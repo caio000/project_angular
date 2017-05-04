@@ -1,4 +1,7 @@
-myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI) {
+myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI, Serial) {
+
+  console.log(Serial.generate());
+
   $scope.app = "Lista telefonica";
   $scope.select = 'select';
   $scope.contactReg = false;
@@ -18,13 +21,13 @@ myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAP
   // Carrega todas as operadoras caradastradas
   var loadPhoneCompanies = function () {
     CompanyAPI.getCompanies().then(function success (response) {
-      console.log(response.data);
       $scope.phoneCompanies = response.data;
     });
   };
 
   // Função que cadastra um novo contato
   $scope.contactRegister = function (contact) {
+    contact.serial = Serial.generate();
     contactsAPI.saveContact(contact).then(function success(response) {
       $scope.contactReg = true;
       loadContacts();

@@ -26,6 +26,7 @@
             <thead>
               <tr>
                 <th><i class="fa fa-check-square-o" aria-hidden="true"></i></th>
+                <th>Serial</th>
                 <th><a href="" ng-click="orderColumnBy('name')">Name</a></th>
                 <th>Phone</th>
                 <th>Operadora</th>
@@ -37,9 +38,10 @@
               <!-- filter: {name: searchFilter} (filtro com criterios, no caso filtro por nome) -->
               <tr ng-class="{select : contact.select, bold: contact.select}" ng-repeat="contact in contacts | filter:{name:searchFilter} | orderBy:orderColumn:orderDirection">
                 <td><input type="checkbox" ng-model="contact.select"></td>
+                <td>{{ contact.serial }}</td>
                 <td>{{ contact.name | uppercase | limitTo: 3 }}</td>
                 <td>{{ contact.phone }}</td>
-                <td>{{ contact.phoneCompany.name | lowercase }}</td>
+                <td>{{ contact.phoneCompany.name | uppercase }}</td>
                 <td>{{ contact.date | date:'dd/MM/yyyy HH:mm' }}</td>
               </tr>
             </tbody>
@@ -108,6 +110,8 @@
   <!-- Services -->
   <script type="text/javascript" src="js/services/contactsAPIService.js"></script>
   <script type="text/javascript" src="js/services/companiesAPIService.js"></script>
+  <script type="text/javascript" src="js/services/SerialProvider.js"></script>
   <script type="text/javascript" src="js/services/ConfigValue.js"></script>
+  <script type="text/javascript" src="js/config/serialGeneratorConfig.js"></script>
 </body>
 </html>
