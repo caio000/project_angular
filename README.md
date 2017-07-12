@@ -13,7 +13,7 @@ course by @rodrigobranas on YouTube.
 - [x] Lesson 06
 - [x] Lesson 07
 - [x] Lesson 08
-- [ ] Lesson 09
+- [x] Lesson 09
 - [ ] Lesson 10
 - [ ] Lesson 11
 - [ ] Lesson 12

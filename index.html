@@ -39,7 +39,7 @@
               <tr ng-class="{select : contact.select, bold: contact.select}" ng-repeat="contact in contacts | filter:{name:searchFilter} | orderBy:orderColumn:orderDirection">
                 <td><input type="checkbox" ng-model="contact.select"></td>
                 <td>{{ contact.serial }}</td>
-                <td>{{ contact.name | uppercase | limitTo: 3 }}</td>
+                <td>{{ contact.name | name | ellipsis : 5 }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.phoneCompany.name | uppercase }}</td>
                 <td>{{ contact.date | date:'dd/MM/yyyy HH:mm' }}</td>
@@ -113,5 +113,8 @@
   <script type="text/javascript" src="js/services/SerialProvider.js"></script>
   <script type="text/javascript" src="js/services/ConfigValue.js"></script>
   <script type="text/javascript" src="js/config/SerialGeneratorConfig.js"></script>
+  <!-- Filters -->
+  <script type="text/javascript" src="js/filters/nameFilter.js"     charset="utf-8"></script>
+  <script type="text/javascript" src="js/filters/ellipsisFilter.js" charset="utf-8"></script>
 </body>
 </html>
