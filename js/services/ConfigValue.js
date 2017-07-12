@@ -4,5 +4,5 @@
 
 // Ao utilizar o config com o tipo constant é possivel utiliza-lo dentro de provider
 myApp.constant('Config',{
-  baseURL: 'http://localhost/angular/'
+  baseURL: 'http://localhost/project_angular/'
 });

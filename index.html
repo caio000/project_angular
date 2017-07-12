@@ -74,7 +74,7 @@
 
             <div class="form-group">
               <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name + ' (' + (phoneCompany.price | currency) + ') ' for phoneCompany in phoneCompanies | orderBy:'name'">
-                <option value="">=========================Selecione uma operadora============================<option>
+                <option value="">=====================Selecione uma operadora=====================<option>
               </select>
             </div>
 
@@ -106,12 +106,12 @@
   <!-- Module -->
   <script type="text/javascript" src="js/app.js"></script>
   <!-- Controller -->
-  <script type="text/javascript" src="js/controller/phoneListController.js"></script>
+  <script type="text/javascript" src="js/controller/PhoneListController.js"></script>
   <!-- Services -->
   <script type="text/javascript" src="js/services/contactsAPIService.js"></script>
   <script type="text/javascript" src="js/services/companiesAPIService.js"></script>
   <script type="text/javascript" src="js/services/SerialProvider.js"></script>
   <script type="text/javascript" src="js/services/ConfigValue.js"></script>
-  <script type="text/javascript" src="js/config/serialGeneratorConfig.js"></script>
+  <script type="text/javascript" src="js/config/SerialGeneratorConfig.js"></script>
 </body>
 </html>
