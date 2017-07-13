@@ -1,8 +1,7 @@
 myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI, Serial) {
 
-  console.log(Serial.generate());
-
   $scope.app = "Lista telefonica";
+  $scope.page = {};
   $scope.select = 'select';
   $scope.contactReg = false;
   $scope.contacts = [];
@@ -14,7 +13,7 @@ myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAP
     contactsAPI.getContacts().then(function success (response) {
       $scope.contacts = response.data;
     }, function error (response) {
-      console.log('erro');
+      $scope.page.status = {title: 'Deu Ruim',message: 'Não foi possivel carregar a lista de contatos cadastrados'};
     });
   };
 
