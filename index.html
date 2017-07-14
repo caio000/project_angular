@@ -44,7 +44,7 @@
                 <td>{{ contact.name | name | ellipsis : 5 }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.phoneCompany.name | uppercase }}</td>
-                <td>{{ contact.date | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>{{ contact.date | date:'dd/MM/yyyy' }}</td>
               </tr>
             </tbody>
           </table>
@@ -75,6 +75,10 @@
             </div>
 
             <div class="form-group">
+              <input class="form-control" name="date" type="text" ng-model="contact.date" placeholder="Data" ui-date ng-required="true">
+            </div>
+
+            <div class="form-group">
               <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name + ' (' + (phoneCompany.price | currency) + ') ' for phoneCompany in phoneCompanies | orderBy:'name'">
                 <option value="">=====================Selecione uma operadora=====================<option>
               </select>
@@ -88,7 +92,7 @@
               <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remover Contato</button>
             </div>
 
-            <div class="alert alert-success" ng-show="contactReg">
+            <div id="form-alert" class="alert alert-success" ng-show="contactReg">
               Contato cadastrado com sucesso! <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </div>
 
@@ -101,6 +105,8 @@
   </div>
 
 
+  <!-- Jquery -->
+  <script type="text/javascript" src="lib/jquery/jquery-3.2.1.min.js" charset="utf-8"></script>
   <!-- Angular -->
   <script type="text/javascript" src="lib/angular/angular.js"></script>
   <!-- Angular Locale -->
@@ -120,5 +126,6 @@
   <script type="text/javascript" src="js/filters/ellipsisFilter.js" charset="utf-8"></script>
   <!-- Directives -->
   <script type="text/javascript" src="js/directives/uiDirective.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/directives/uiDateDirective.js" charset="utf-8"></script>
 </body>
 </html>

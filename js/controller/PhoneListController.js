@@ -29,6 +29,7 @@ myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAP
     contact.serial = Serial.generate();
     contactsAPI.saveContact(contact).then(function success(response) {
       $scope.contactReg = true;
+      angular.element(document).find('#form-alert').fadeIn(1000);
       loadContacts();
     }, function error (response) {
       $scope.contactReg = false;
