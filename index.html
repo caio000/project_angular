@@ -18,6 +18,15 @@
         <div class="jumbotron">
           <h3 class="text-center">{{ app }} <i class="fa fa-address-book-o"></i> </h3>
 
+          <ui-accordions>
+            <ui-accordion title="Teste">
+              Essa é uma mensagem de teste
+            </ui-accordion>
+            <ui-accordion title="Teste">
+              Essa é uma mensagem de teste
+            </ui-accordion>
+          </ui-accordions>
+
           <ui-alert ng-if="page.status" title="{{page.status.title}}" message="{{page.status.message}}"></ui-alert>
 
           <div class="form-group">
@@ -125,7 +134,8 @@
   <script type="text/javascript" src="js/filters/nameFilter.js"     charset="utf-8"></script>
   <script type="text/javascript" src="js/filters/ellipsisFilter.js" charset="utf-8"></script>
   <!-- Directives -->
-  <script type="text/javascript" src="js/directives/uiDirective.js" charset="utf-8"></script>
-  <script type="text/javascript" src="js/directives/uiDateDirective.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/directives/uiDirective.js"           charset="utf-8"></script>
+  <script type="text/javascript" src="js/directives/uiDateDirective.js"       charset="utf-8"></script>
+  <script type="text/javascript" src="js/directives/uiAccordionDirective.js"  charset="utf-8"></script>
 </body>
 </html>

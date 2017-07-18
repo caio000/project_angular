@@ -10,3 +10,45 @@
   width: 20px;
   height: 20px;
 }
+
+.ui-hide {
+  display: none;
+}
+
+/*======Accordion========*/
+.ui-accordion{
+  border: 2px solid rgba(0,0,0,.5);
+  background-color: white;
+  margin: 2px 0px;
+  padding: 0px;
+  float: left;
+  min-width: 494px;
+}
+
+ui-accordions ui-accordion:last-child .ui-accordion {
+  margin-bottom: 10px;
+}
+
+ui-accordions ui-accordion:first-child .ui-accordion-body {
+  display: inline;
+}
+
+.ui-accordion .ui-accordion-title {
+  border-bottom: solid 2px rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  float: left;
+  width: 100%;
+}
+
+.ui-accordion .ui-accordion-body {
+  float: left;
+  width: 100%;
+}
+
+.ui-accordion .ui-accordion-title p,.ui-accordion .ui-accordion-body p {
+  margin: 5px;
+}
+
+.ui-accordion .ui-accordion-body p {
+  font-size: 12pt;
+}
