@@ -1,1 +1,1 @@
-var myApp = angular.module('phoneList', []);
+var myApp = angular.module('phoneList', ['SerialGenerator','ui']);

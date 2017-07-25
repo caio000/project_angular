@@ -23,6 +23,7 @@
   padding: 0px;
   float: left;
   min-width: 494px;
+  width: 100%;
 }
 
 ui-accordions ui-accordion:last-child .ui-accordion {

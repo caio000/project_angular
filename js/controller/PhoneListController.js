@@ -1,4 +1,4 @@
-myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI, Serial) {
+myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAPI, SerialGenerator) {
 
   $scope.app = "Lista telefonica";
   $scope.page = {};
@@ -26,7 +26,7 @@ myApp.controller("phoneListController", function ($scope, contactsAPI, CompanyAP
 
   // Função que cadastra um novo contato
   $scope.contactRegister = function (contact) {
-    contact.serial = Serial.generate();
+    contact.serial = SerialGenerator.generate();
     contactsAPI.saveContact(contact).then(function success(response) {
       $scope.contactReg = true;
       angular.element(document).find('#form-alert').fadeIn(1000);
