@@ -19,7 +19,8 @@
   else
     $contacts = array();
 
-
+  // gera um ID para o contato
+  $contact['id'] = count($contacts) + 1;
   array_push($contacts, $contact);
   $message = (setcookie('contacts', serialize($contacts))) ? 'Contato cadastrado com sucesso' : 'Não foi possivel cadastrar o contato';
 

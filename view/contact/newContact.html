@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+
+    <a class="btn btn-default pull-left" href="#" style="margin:5px;">Voltar</a>
+
+    <div class="jumbotron">
+
+
+      <form name="contactForm">
+        <div class="form-group">
+          <input name="name" class="form-control" type="text" ng-model="contact.name" ng-required="true" ng-minlength="10" placeholder="Nome">
+        </div>
+        <!-- Error message -->
+        <div ng-show="contactForm.name.$error.required && contactForm.name.$dirty" class="alert alert-danger">
+          Informe o seu nome
+        </div>
+        <div ng-show="contactForm.name.$error.minlength" class="alert alert-danger">
+          O nome deve conter no minimo 10 caracteres.
+        </div>
+
+        <div class="form-group">
+          <input name="phone" class="form-control" type="text" ng-model="contact.phone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" placeholder="Telefone">
+        </div>
+        <!-- Error message -->
+        <div ng-show="contactForm.phone.$error.required && contactForm.phone.$dirty" class="alert alert-danger">
+          Informe o seu telefone
+        </div>
+        <div ng-show="contactForm.phone.$error.pattern" class="alert alert-danger">
+          O campo telefone deve estar no formato 00000-0000
+        </div>
+
+        <div class="form-group">
+          <input class="form-control" name="date" type="text" ng-model="contact.date" placeholder="Data" ui-date ng-required="true">
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" ng-model="contact.phoneCompany" ng-options="phoneCompany.name + ' (' + (phoneCompany.price | currency) + ') ' for phoneCompany in phoneCompanies | orderBy:'name'">
+            <option value="">=====================Selecione uma operadora=====================<option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" ng-click="contactRegister(contact)" ng-disabled="contactForm.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar contato</button>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-danger btn-block" ng-if="isContactSelect(contacts)" ng-click="deleteContact(contacts)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remover Contato</button>
+        </div>
+
+        <div id="form-alert" class="alert alert-success" ng-show="contactReg">
+          Contato cadastrado com sucesso! <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

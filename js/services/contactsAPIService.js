@@ -3,6 +3,10 @@ myApp.factory('contactsAPI', function($http, Config) {
     return $http.get(Config.baseURL + 'php/contact/getContacts.php');
   };
 
+  var _getContactById = function (id) {
+    return $http.get(Config.baseURL + 'php/contact/getContacts.php?id='+id);
+  };
+
   var _saveContact = function (contact) {
     return $http.post(Config.baseURL + "php/contact/addContacts.php", contact);
   };
@@ -10,6 +14,7 @@ myApp.factory('contactsAPI', function($http, Config) {
 
   return {
     getContacts: _getContacts,
+    getContactById: _getContactById,
     saveContact: _saveContact
   };
 });
