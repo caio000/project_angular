@@ -23,6 +23,9 @@
       }
     }
 
+    // verifica se foi encontrado o contato
+    if (empty($contactTemp)) header('HTTP/1.1 404 Not Found');
+
     $contacts = $contactTemp;
   }
 

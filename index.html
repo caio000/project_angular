@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <div class="container-fluid">
+  <div id="page" class="container-fluid">
 
     <ng-view></ng-view>
 
@@ -40,8 +40,14 @@
   <script type="text/javascript" src="js/services/contactsAPIService.js"></script>
   <script type="text/javascript" src="js/services/companiesAPIService.js"></script>
   <script type="text/javascript" src="js/services/ConfigValue.js"></script>
+  <!-- Config -->
   <script type="text/javascript" src="js/config/route.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/config/SerialGeneratorConfig.js"></script>
+  <script type="text/javascript" src="js/config/interceptor.js" charset="utf-8"></script>
+  <!-- interceptor -->
+  <script type="text/javascript" src="js/interceptors/timestamp.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/interceptors/error.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/interceptors/loading.js" charset="utf-8"></script>
   <!-- Filters -->
   <script type="text/javascript" src="js/filters/nameFilter.js"     charset="utf-8"></script>
   <script type="text/javascript" src="js/filters/ellipsisFilter.js" charset="utf-8"></script>

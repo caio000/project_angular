@@ -29,5 +29,8 @@ myApp.config(function ($routeProvider,$locationProvider) {
       }
     }
   });
+  $routeProvider.when('/error', {
+    templateUrl: 'view/error/404.html'
+  });
   $routeProvider.otherwise({redirectTo: "/"});
 });
