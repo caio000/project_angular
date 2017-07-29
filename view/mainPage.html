@@ -15,7 +15,7 @@
       <ui-alert ng-if="page.status" title="{{page.status.title}}" message="{{page.status.message}}"></ui-alert>
 
       <div class="form-group">
-        <input class="form-control" type="text" ng-model="searchFilter" placeholder="O que você esta procurando?">
+        <input class="form-control" type="text" ng-model="searchFilter" ng-model-options="{updateOn: 'default', debounce: 1000}" placeholder="O que você esta procurando?">
       </div>
 
       <table ng-show="contacts.length > 0" class="table table-bordered">
@@ -26,6 +26,8 @@
             <th><a href="" ng-click="orderColumnBy('name')">Name</a></th>
             <th>Phone</th>
             <th>Operadora</th>
+            <th>Preço</th>
+            <th>Preço com imposto</th>
             <th>Data</th>
           </tr>
         </thead>
@@ -34,11 +36,13 @@
           <!-- filter: {name: searchFilter} (filtro com criterios, no caso filtro por nome) -->
           <tr ng-class="{select : contact.select, bold: contact.select}" ng-repeat="contact in contacts | filter:{name:searchFilter} | orderBy:orderColumn:orderDirection">
             <td><input type="checkbox" ng-model="contact.select"></td>
-            <td>{{ contact.serial }}</td>
-            <td> <a href="#contato/detalhe/{{contact.id}}">{{ contact.name | name }}</a></td>
-            <td>{{ contact.phone }}</td>
-            <td>{{ contact.phoneCompany.name | uppercase }}</td>
-            <td>{{ contact.date | date:'dd/MM/yyyy' }}</td>
+            <td>{{ ::contact.serial }}</td>
+            <td> <a href="#contato/detalhe/{{contact.id}}">{{ ::contact.name | name | ellipsis:5}}</a></td>
+            <td>{{ ::contact.phone }}</td>
+            <td>{{ ::contact.phoneCompany.name | uppercase }}</td>
+            <td>{{ ::contact.phoneCompany.price | currency }}</td>
+            <td>{{ ::contact.phoneCompany.priceWithTax | currency }}</td>
+            <td>{{ ::contact.date | date:'dd/MM/yyyy' }}</td>
           </tr>
         </tbody>
       </table>

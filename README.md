@@ -20,5 +20,5 @@ course by @rodrigobranas on YouTube.
 - [x] Lesson 13
 - [x] Lesson 14
 - [x] Lesson 15
-- [ ] Lesson 16
+- [x] Lesson 16
 - [ ] Lesson 17

@@ -5,6 +5,18 @@ myApp.controller("phoneListController", function ($scope, contacts) {
   $scope.select = 'select';
   $scope.contacts = contacts.data;
 
+  var init = function () {
+    // verifica se existe contatos cadastrados
+    if (($scope.contacts.length > 0 && $scope.contacts == true)) taxCalculate($scope.contacts);
+  }
+
+  var taxCalculate = function (contacts) {
+    contacts.forEach(function (contact) {
+      contact.phoneCompany.priceWithTax = contact.phoneCompany.price * 1.2;
+    });
+  };
+
+  init();
 
   // Função que lista todos os contatos cadastrados
   var loadContacts = function () {
