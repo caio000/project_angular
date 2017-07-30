@@ -1,4 +1,4 @@
-myApp.controller("phoneListController", function ($scope, contacts) {
+myApp.controller("phoneListController", function ($scope, contacts, $document) {
 
   $scope.app = "Lista telefonica";
   $scope.page = {};
@@ -17,6 +17,10 @@ myApp.controller("phoneListController", function ($scope, contacts) {
   };
 
   init();
+
+  $scope.logoToggle = function () {
+    $document.find('#logo').toggle(1000);
+  };
 
   // Função que lista todos os contatos cadastrados
   var loadContacts = function () {
